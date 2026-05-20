@@ -19,48 +19,59 @@ export default function CaloriesCard({ data }) {
   const progress = Math.min((consumidas / meta_calorias) * 100, 100);
 
   return (
-    <div className="w-full bg-white rounded-xl border border-gray-200 shadow-sm p-4 space-y-4">
+    <div className="w-full rounded-2xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 shadow-sm p-5 space-y-5">
+
+      {/* Header */}
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-gray-900">Calorías</h2>
+        <h2 className="text-lg font-semibold text-gray-900">Calorías diarias</h2>
         <MoreVertical className="w-5 h-5 text-gray-400" />
       </div>
 
-      <div className="flex justify-center items-center relative">
-        <div className="w-40 h-40 rounded-full border-[15px] border-gray-100 relative">
+      {/* Circle */}
+      <div className="flex justify-center">
+        <div className="relative w-44 h-44">
+          
+          {/* Fondo */}
+          <div className="absolute inset-0 rounded-full border-[14px] border-gray-100" />
+
+          {/* Progreso */}
           <div
-            className="absolute inset-0 rounded-full border-[15px] border-blue-900 transition-all duration-300"
+            className="absolute inset-0 rounded-full border-[14px] border-blue-600 transition-all duration-500"
             style={{
               clipPath: `inset(${100 - progress}% 0 0 0)`,
             }}
           />
+
+          {/* Center */}
           <div className="absolute inset-0 flex flex-col justify-center items-center">
-            <span className="text-3xl font-bold text-gray-900">{consumidas}</span>
-            <span className="text-sm text-gray-500">/ {meta_calorias} kcal</span>
+            <span className="text-3xl font-bold text-gray-900">
+              {consumidas}
+            </span>
+            <span className="text-xs text-gray-500">
+              / {meta_calorias} kcal
+            </span>
+            <span className="text-xs text-blue-600 font-medium mt-1">
+              {progress.toFixed(0)}%
+            </span>
           </div>
         </div>
       </div>
 
-      <div className="flex justify-between text-center text-sm space-x-6">
-        <div className="flex flex-col items-center">
-          <div className="w-3 h-3 mb-1 rounded-full bg-blue-900" />
-          <div className="font-medium text-gray-900">{proteinas}g</div>
-          <div className="text-gray-500 text-xs">
-            Proteína / {meta_proteinas}g
-          </div>
+      {/* Macros */}
+      <div className="grid grid-cols-3 gap-3 text-center">
+        <div className="bg-blue-50 rounded-xl p-3">
+          <div className="text-blue-700 font-semibold">{proteinas}g</div>
+          <div className="text-[11px] text-gray-500">Proteína</div>
         </div>
-        <div className="flex flex-col items-center">
-          <div className="w-3 h-3 mb-1 rounded-full bg-emerald-500" />
-          <div className="font-medium text-gray-900">{carbohidratos}g</div>
-          <div className="text-gray-500 text-xs">
-            Carbohidratos / {meta_carbohidratos}g
-          </div>
+
+        <div className="bg-emerald-50 rounded-xl p-3">
+          <div className="text-emerald-600 font-semibold">{carbohidratos}g</div>
+          <div className="text-[11px] text-gray-500">Carbos</div>
         </div>
-        <div className="flex flex-col items-center">
-          <div className="w-3 h-3 mb-1 rounded-full bg-orange-500" />
-          <div className="font-medium text-gray-900">{grasas}g</div>
-          <div className="text-gray-500 text-xs">
-            Grasas / {meta_grasas}g
-          </div>
+
+        <div className="bg-orange-50 rounded-xl p-3">
+          <div className="text-orange-500 font-semibold">{grasas}g</div>
+          <div className="text-[11px] text-gray-500">Grasas</div>
         </div>
       </div>
     </div>
